@@ -5,12 +5,17 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "lerna bootstrap --hoist",
+    "add": "lerna add",
     "start-server": "cd server && npm start",
     "start-client": "cd client && npm start"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "lerna": "^3.4.3"
+    "lerna": "^3.4.3",
+    "prettier": "^1.15.2",
+    "tslint": "^5.11.0",
+    "tslint-config-prettier": "^1.16.0",
+    "typescript": "^3.1.6"
   }
 }

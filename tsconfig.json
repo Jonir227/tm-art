@@ -14,5 +14,5 @@
     "noEmit": true,
     "jsx": "preserve"
   },
-  "include": ["src", "shared"]
+  "include": ["client", "server", "shared"]
 }
