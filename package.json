@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "postinstall": "lerna bootstrap --hoist",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-server": "cd server && npm start",
+    "start-client": "cd client && npm start"
   },
   "author": "",
   "license": "ISC",
