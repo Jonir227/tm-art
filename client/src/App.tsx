@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
+import { MandalList, MandalMaker } from './pages';
 
 class App extends Component {
-  render() {
+  public render() {
     return (
-      <div>
-        hi
-      </div>
+      <>
+        <Route path="/make" component={MandalMaker} />
+        <Route path="/" component={MandalList} />
+      </>
     );
   }
 }

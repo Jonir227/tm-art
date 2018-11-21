@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["esnext", "dom"],
+    "lib": ["esnext", "dom", "es2015.promise"],
+    "experimentalDecorators": true,
     "allowJs": true,
     "skipLibCheck": false,
     "esModuleInterop": true,
