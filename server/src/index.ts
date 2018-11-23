@@ -1,6 +1,19 @@
-import App from "./App";
-import routes from "./routes";
+import 'reflect-metadata';
+import { createConnection } from 'typeorm';
+import App from './App';
+import routes from './routes';
 
 const server = new App();
 
-server.start({ port: 8080, routes });
+createConnection({
+  database: 'mandalart',
+  entities: [__dirname + '/entities/**/*.ts'],
+  host: 'localhost',
+  logging: true,
+  port: 3306,
+  synchronize: true,
+  type: 'mariadb',
+  username: 'root',
+}).then(conn => {
+  server.start({ port: 8080, routes });
+});

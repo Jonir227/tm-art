@@ -3,23 +3,22 @@ import {
   Column,
   Entity,
   ManyToOne,
-  ObjectID,
-  ObjectIdColumn,
+  PrimaryGeneratedColumn,
 } from 'typeorm';
 import MandalObject from './MandalObject';
 
 @Entity()
 class MandalTodo extends BaseEntity {
-  @ObjectIdColumn()
-  public id!: ObjectID;
+  @PrimaryGeneratedColumn()
+  public id!: number;
 
-  @Column()
+  @Column({ type: 'varchar', default: '' })
   public object!: string;
 
-  @Column()
+  @Column({ type: 'varchar', default: '' })
   public description!: string;
 
-  @Column()
+  @Column({ type: 'int', default: 0 })
   public score!: number;
 
   @ManyToOne(type => MandalObject, mandalObject => mandalObject.mandalTodo)

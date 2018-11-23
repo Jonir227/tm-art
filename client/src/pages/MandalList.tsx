@@ -1,11 +1,7 @@
 import React from 'react';
 
 const MandalList = () => {
-  return (
-    <div>
-      
-    </div>
-  );
+  return <div>목록~</div>;
 };
 
 export default MandalList;
