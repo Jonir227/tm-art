@@ -6,8 +6,9 @@ class App extends Component {
   public render() {
     return (
       <>
-        <Route path="/make" component={MandalMaker} />
-        <Route path="/" component={MandalList} />
+        <Route exact path="/make" component={MandalMaker} />
+        <Route exact path="/:id" component={MandalMaker} />
+        <Route exact path="/" component={MandalList} />
       </>
     );
   }

@@ -6,8 +6,8 @@ const MandalBox = styled.input`
   background-color: rgba(0, 255, 0, 0.3);
   border: none;
   border-radius: 3px;
-  height: 80px;
-  width: 80px;
+  height: 75px;
+  width: 75px;
 `;
 
 const MandalFragment = () => {
