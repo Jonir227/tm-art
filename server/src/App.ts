@@ -1,3 +1,4 @@
+import bodyParser from 'body-parser';
 import chalk from 'chalk';
 import express, { Router } from 'express';
 import morgan from 'morgan';
@@ -28,6 +29,7 @@ class App {
   // middleware & plugins
   private init() {
     this.server.use(morgan('dev'));
+    this.server.use(bodyParser.json());
   }
 }
 

@@ -3,6 +3,7 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinTable,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -23,15 +24,6 @@ class MandalObject extends BaseEntity {
 
   @ManyToOne(type => MandalArt, mandalArt => mandalArt.mandalObjects)
   public mandalArt!: MandalArt;
-
-  @AfterInsert()
-  public async createMandalTodo() {
-    const mandalTodos = [];
-    for (let i = 0; i < 8; i++) {
-      mandalTodos.push(await MandalTodo.create({ mandalObject: this }));
-    }
-    this.mandalTodo = mandalTodos;
-  }
 }
 
 export default MandalObject;
