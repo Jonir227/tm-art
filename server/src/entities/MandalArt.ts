@@ -1,9 +1,7 @@
 import {
-  AfterInsert,
   BaseEntity,
   Column,
   Entity,
-  JoinTable,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';

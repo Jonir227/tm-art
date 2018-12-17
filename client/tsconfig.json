@@ -12,7 +12,10 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": ["DOM", "ScriptHost", "DOM.Iterable", "ES2015", "ES5"]
   },
   "include": ["src", "shared"]
 }

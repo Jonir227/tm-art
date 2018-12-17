@@ -12,7 +12,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "lib": ["DOM.Iterable", "ES2015.Iterable"]
   },
   "include": ["client", "server", "shared"]
 }
