@@ -1,3 +1,4 @@
 import MandalContainer from './MandalContainer';
+import TopNavBar from './TopNavBar';
 
-export { MandalContainer };
+export { MandalContainer, TopNavBar };
