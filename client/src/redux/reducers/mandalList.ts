@@ -1,5 +1,5 @@
 import { AsyncActionCondition } from '../../types/condition';
-import { IMandalArt } from '../../types/MandalArt';
+import { IMandalArt, IMandalArtFront } from '../../types/MandalArt';
 import { MandalListActions } from '../actions/MandalListAcitons';
 import {
   GET_MANDAL_LIST_FAILURE,
@@ -10,13 +10,13 @@ import {
 export interface IMandalListState {
   mandalListCondition: AsyncActionCondition;
   count: number;
-  mandalArts: IMandalArt[];
+  mandalArts: IMandalArtFront[];
 }
 
 const defaultState: IMandalListState = {
   mandalListCondition: 'INIT',
   count: 0,
-  mandalArts: [] as IMandalArt[],
+  mandalArts: [] as IMandalArtFront[],
 };
 
 const mandalList = (

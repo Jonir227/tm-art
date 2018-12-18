@@ -1,5 +1,5 @@
 import axios, { AxiosPromise } from 'axios';
-import { IMandalArt } from '../types/MandalArt';
+import { IMandalArtFront } from '../types/MandalArt';
 
 export interface IDefaultAPIFailure {
   message: string;
@@ -7,7 +7,7 @@ export interface IDefaultAPIFailure {
 
 export interface IGetMandalListSuccessAPI {
   count: number;
-  mandalArts: IMandalArt[];
+  mandalArts: IMandalArtFront[];
 }
 
 export const getMandalList = (): AxiosPromise<IGetMandalListSuccessAPI> => {

@@ -1,7 +1,12 @@
+export interface IMandalArtFront {
+  id: number;
+  goal: string;
+  score: number;
+}
 export interface IMandalArt {
   id: number;
   goal: string;
-  mandalObjects?: IMandalObject[];
+  mandalObjects: IMandalObject[];
 }
 
 export interface IMandalObject {

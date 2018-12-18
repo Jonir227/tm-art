@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import mandalArtListActionCreators from '../redux/actions/MandalListAcitons';
 import { IRootState } from '../redux/reducers';
 import { AsyncActionCondition } from '../types/condition';
-import { IMandalArt } from '../types/MandalArt';
+import { IMandalArtFront } from '../types/MandalArt';
+import { getGrade } from '../utls';
 
 interface IMandalListProps {
   count: number;
-  mandalArts: IMandalArt[];
+  mandalArts: IMandalArtFront[];
   mandalListCondition: AsyncActionCondition;
   getMandalList: () => void;
 }
@@ -29,9 +30,9 @@ class MandalList extends Component<IMandalListProps> {
       <>
         <div>{count} 개</div>
         <div>
-          {mandalArts.map((item: IMandalArt) => (
+          {mandalArts.map(item => (
             <div>
-              {item.id} - {item.goal}
+              {item.id} - {item.goal} - {getGrade(item.score)}
             </div>
           ))}
         </div>

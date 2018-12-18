@@ -2,11 +2,24 @@ import { Request, Response } from 'express';
 import { MandalArt, MandalObject, MandalTodo } from '../../entities';
 
 export const getMandals = async (req: Request, res: Response) => {
-  const [mandalArts, count] = await MandalArt.findAndCount();
+  const [mandalArts, count] = await MandalArt.findAndCount({
+    relations: ['mandalObjects', 'mandalObjects.mandalTodo'],
+  });
+
+  const response = mandalArts.map(mandalArt => {
+    const score = mandalArt.mandalObjects.reduce(
+      (acc, mandalObj) =>
+        acc +
+        mandalObj.mandalTodo.reduce((accTodo, todo) => accTodo + todo.score, 0),
+      0,
+    );
+    delete mandalArt.mandalObjects;
+    return { ...mandalArt, score };
+  });
 
   res.json({
     count,
-    mandalArts,
+    mandalArts: response,
   });
 };
 
@@ -19,6 +32,13 @@ export const getMandal = async (req: Request, res: Response) => {
       relations: ['mandalObjects', 'mandalObjects.mandalTodo'],
     },
   );
+
+  if (!mandalArt) {
+    res.status(404).json({
+      message: 'cannot find mandal Art',
+    });
+    return;
+  }
 
   res.json({
     mandalArt,
