@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MandalFragment } from '../component';
+import { MandalFragment } from '../../component/Shared';
 
 const MandalContainerWrapper = styled.div`
   display: grid;

@@ -5,8 +5,8 @@ import IAPIAction from '../../types/APIAction';
 
 export default function* apiSagaTemplate(
   actionCreators: IAPIAction,
-  apifn: () => Promise<any | IDefaultAPIFailure>,
-  payload: any = null,
+  apifn: (...args: any) => Promise<any | IDefaultAPIFailure>,
+  payload: any | undefined,
 ): SagaIterator {
   try {
     yield put(actionCreators.request());

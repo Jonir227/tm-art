@@ -1,5 +1,5 @@
 import { AsyncActionCondition } from '../../types/condition';
-import { IMandalArt, IMandalArtFront } from '../../types/MandalArt';
+import { IMandalArtFront } from '../../types/MandalArt';
 import { MandalListActions } from '../actions/MandalListAcitons';
 import {
   GET_MANDAL_LIST_FAILURE,

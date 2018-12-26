@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { TopNavBar } from './container';
+import TopNavBar from './container/TopNavBar';
 import { MandalList, MandalMaker } from './pages';
 
 const ContainerWrapper = styled.div`

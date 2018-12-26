@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import mandalList, { IMandalListState } from './mandalList';
+import mandalList, { IMandalListState } from './mandalListReducer';
 
 const rootReducer = combineReducers({ mandalList });
 

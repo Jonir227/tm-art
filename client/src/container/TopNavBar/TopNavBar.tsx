@@ -10,9 +10,6 @@ class TopNavBar extends Component {
           <NavLink to="" activeClassName="selected">
             목록
           </NavLink>
-          <NavLink to="" activeClassName="selected">
-            목록
-          </NavLink>
         </NavigationWrapper>
       </NavBarWrapper>
     );

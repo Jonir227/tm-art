@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { MandalContainer } from '../container';
+import { MandalContainer } from '../container/MandalMaker';
 
 const MadnalWrapper = styled.div`
   width: 800px;
