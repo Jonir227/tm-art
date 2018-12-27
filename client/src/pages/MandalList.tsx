@@ -6,11 +6,12 @@ import mandalArtListActionCreators from '../redux/actions/MandalListAcitons';
 import { IRootState } from '../redux/reducers';
 import { AsyncActionCondition } from '../types/condition';
 import { IMandalArtFront } from '../types/MandalArt';
+import MandalListHeader from '../component/MandalList/MandalListHeader';
 
 interface IMandalListProps {
-  count: number;
-  mandalArts: IMandalArtFront[];
-  mandalListCondition: AsyncActionCondition;
+  readonly count: number;
+  readonly mandalArts: IMandalArtFront[];
+  readonly mandalListCondition: AsyncActionCondition;
   getMandalList: () => void;
 }
 
@@ -30,7 +31,7 @@ class MandalList extends Component<IMandalListProps> {
     return (
       <>
         <CreateMandalArt />
-        <div>{count} 개</div>
+        <MandalListHeader count={count} />
         <MandalListMap mandalArtList={mandalArts} />
       </>
     );

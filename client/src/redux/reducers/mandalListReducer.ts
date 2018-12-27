@@ -8,9 +8,9 @@ import {
 } from '../actionTypes/MandalListAcitonsTypes';
 
 export interface IMandalListState {
-  mandalListCondition: AsyncActionCondition;
-  count: number;
-  mandalArts: IMandalArtFront[];
+  readonly mandalListCondition: AsyncActionCondition;
+  readonly count: number;
+  readonly mandalArts: IMandalArtFront[];
 }
 
 const defaultState: IMandalListState = {

@@ -10,6 +10,12 @@ class TopNavBar extends Component {
           <NavLink to="" activeClassName="selected">
             목록
           </NavLink>
+          <NavLink to="/malk" activeClassName="selected">
+            목록
+          </NavLink>
+          <NavLink to="/asdf" activeClassName="selected">
+            목록
+          </NavLink>
         </NavigationWrapper>
       </NavBarWrapper>
     );

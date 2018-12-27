@@ -1,20 +1,20 @@
 import styled from 'styled-components';
-import { GreenColor } from '../../constants/colors';
+import { BlueColor, GreenColor } from '../../constants/colors';
 
 export const NavBarWrapper = styled.header`
+  height: 50px;
   display: flex;
   flex: 10;
   justify-content: space-between;
-  color: ${GreenColor.prime};
   top: 0px;
-  height: 50px;
-  padding-top: 12px;
-  border-bottom: 1px solid ${GreenColor.dark};
+  padding: 12px 20px 0px 20px;
+  background-color: ${BlueColor.prime};
+  color: ${GreenColor.prime};
 `;
 
 export const Logo = styled.h1`
   padding: 0px;
-  margin: 0px 0px 0px 10px;
+  margin: 0px;
   display: flex;
   flex: 6;
   align-items: center;
@@ -25,23 +25,30 @@ export const Logo = styled.h1`
 export const NavigationWrapper = styled.nav`
   display: flex;
   flex: 4;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   align-items: center;
   & > a {
-    text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1;
-    font-size: 23px;
-    height: 100%;
+    width: 85px;
+    height: 80%;
+    margin: 0px 4px 0px 4px;
+    border-radius: 2px;
+    text-decoration: none;
+    font-size: 20px;
+    color: ${GreenColor.prime};
   }
   & > a:hover {
+    color: ${BlueColor.prime};
     background-color: ${GreenColor.light};
   }
-  & > a:visited {
-  }
   & > a.selected {
-    border-bottom: 5px solid ${GreenColor.dark};
+    color: ${BlueColor.prime};
+    background-color: ${GreenColor.prime};
+  }
+  & > a.selected:hover {
+    color: ${BlueColor.prime};
+    background-color: ${GreenColor.light};
   }
 `;
