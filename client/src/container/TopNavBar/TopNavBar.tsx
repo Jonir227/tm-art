@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import { Logo, NavBarWrapper, NavigationWrapper } from './Styles';
+import {
+  Logo,
+  MenuIcon,
+  MenuText,
+  NavBarWrapper,
+  NavigationWrapper,
+  StyledLink,
+} from './Styles';
 class TopNavBar extends Component {
   public render() {
     return (
       <NavBarWrapper>
         <Logo>Mandal Garden 🌱</Logo>
         <NavigationWrapper>
-          <NavLink to="" activeClassName="selected">
-            목록
-          </NavLink>
-          <NavLink to="/malk" activeClassName="selected">
-            목록
-          </NavLink>
-          <NavLink to="/asdf" activeClassName="selected">
-            목록
-          </NavLink>
+          <StyledLink to="" activeClassName="selected">
+            <MenuText>목록</MenuText>
+            <MenuIcon icon="list" />
+          </StyledLink>
+          <StyledLink to="/malk" activeClassName="selected">
+            <MenuText>목록</MenuText>
+            <MenuIcon icon="list" />
+          </StyledLink>
+          <StyledLink to="/asdf" activeClassName="selected">
+            <MenuText>목록</MenuText>
+            <MenuIcon icon="list" />
+          </StyledLink>
         </NavigationWrapper>
       </NavBarWrapper>
     );

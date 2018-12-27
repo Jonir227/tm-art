@@ -1,4 +1,4 @@
-import axios, { AxiosPromise, AxiosResponse } from 'axios';
+import axios from 'axios';
 import { IMandalArt, IMandalArtFront } from '../types/MandalArt';
 
 export interface IDefaultAPIFailure {
@@ -15,8 +15,8 @@ export const getMandalList = async (): Promise<
 > => {
   // 데이터 변경되면 데이터 처리
   try {
-    const { data: response } = await axios.get('/mandal');
-    return response;
+    const { data: mandalList } = await axios.get('/mandal');
+    return mandalList;
   } catch (err) {
     return { message: err };
   }

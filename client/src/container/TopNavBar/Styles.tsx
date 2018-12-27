@@ -1,5 +1,8 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { BlueColor, GreenColor } from '../../constants/colors';
+import { media } from '../../utils/media';
 
 export const NavBarWrapper = styled.header`
   height: 50px;
@@ -18,8 +21,51 @@ export const Logo = styled.h1`
   display: flex;
   flex: 6;
   align-items: center;
+  font-family: 'Indie Flower';
   font-size: 35px;
   height: 100%;
+  ${media.small`
+    font-size: 16px;
+    max-width: 100px;
+  `}
+`;
+
+export const MenuText = styled.div`
+  ${media.small`
+    display: none;
+  `}
+`;
+
+export const MenuIcon = styled(FontAwesomeIcon)`
+  display: none;
+  ${media.small`
+    display: block;
+  `}
+`;
+
+export const StyledLink = styled(NavLink)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85px;
+  height: 80%;
+  margin: 0px 4px 0px 4px;
+  border-radius: 2px;
+  text-decoration: none;
+  font-size: 20px;
+  color: ${GreenColor.prime};
+  &:hover {
+    color: ${BlueColor.prime};
+    background-color: ${GreenColor.light};
+  }
+  &.selected {
+    color: ${BlueColor.prime};
+    background-color: ${GreenColor.prime};
+  }
+  &.selected:hover {
+    color: ${BlueColor.prime};
+    background-color: ${GreenColor.light};
+  }
 `;
 
 export const NavigationWrapper = styled.nav`
@@ -27,28 +73,4 @@ export const NavigationWrapper = styled.nav`
   flex: 4;
   justify-content: flex-end;
   align-items: center;
-  & > a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 85px;
-    height: 80%;
-    margin: 0px 4px 0px 4px;
-    border-radius: 2px;
-    text-decoration: none;
-    font-size: 20px;
-    color: ${GreenColor.prime};
-  }
-  & > a:hover {
-    color: ${BlueColor.prime};
-    background-color: ${GreenColor.light};
-  }
-  & > a.selected {
-    color: ${BlueColor.prime};
-    background-color: ${GreenColor.prime};
-  }
-  & > a.selected:hover {
-    color: ${BlueColor.prime};
-    background-color: ${GreenColor.light};
-  }
 `;
