@@ -1,48 +1,62 @@
 import { Request, Response } from 'express';
 import { MandalArt, MandalObject, MandalTodo } from '../../entities';
 
+// 전체 만다라트를 불러옴
 export const getMandals = async (req: Request, res: Response) => {
-  const [mandalArts, count] = await MandalArt.findAndCount({
-    relations: ['mandalObjects', 'mandalObjects.mandalTodo'],
-  });
+  try{
+    const [mandalArts, count] = await MandalArt.findAndCount({
+      relations: ['mandalObjects', 'mandalObjects.mandalTodo'],
+    });
 
-  const response = mandalArts.map(mandalArt => {
-    const score = mandalArt.mandalObjects.reduce(
-      (acc, mandalObj) =>
-        acc +
-        mandalObj.mandalTodo.reduce((accTodo, todo) => accTodo + todo.score, 0),
-      0,
-    );
-    delete mandalArt.mandalObjects;
-    return { ...mandalArt, score };
-  });
+    // 응답 shape를 맞춤
+    const response = mandalArts.map(mandalArt => {
+      const score = mandalArt.mandalObjects.reduce(
+        (acc, mandalObj) =>
+          acc +
+          mandalObj.mandalTodo.reduce((accTodo, todo) => accTodo + todo.score, 0),
+        0,
+      );
+      delete mandalArt.mandalObjects;
+      return { ...mandalArt, score };
+    });
 
-  res.json({
-    count,
-    mandalArts: response,
-  });
+    res.json({
+      count,
+      mandalArts: response,
+    });
+  } catch(err) {
+    res.status(503).json({
+      message: 'Internal Server Error',
+    });
+  }
 };
 
 export const getMandal = async (req: Request, res: Response) => {
   const { id } = req.params;
 
-  const mandalArt = await MandalArt.findOne(
-    { id },
-    {
-      relations: ['mandalObjects', 'mandalObjects.mandalTodo'],
-    },
-  );
+  try {
+    const mandalArt = await MandalArt.findOne(
+      { id },
+      {
+        relations: ['mandalObjects', 'mandalObjects.mandalTodo'],
+      },
+    );
 
-  if (!mandalArt) {
-    res.status(404).json({
-      message: 'cannot find mandal Art',
+    if (!mandalArt) {
+      res.status(404).json({
+        message: 'cannot find mandal Art',
+      });
+      return;
+    }
+
+    res.json({
+      mandalArt,
     });
-    return;
+  } catch(err) {
+    res.status(503).json({
+      message: 'Internal Server Error',
+    });
   }
-
-  res.json({
-    mandalArt,
-  });
 };
 
 interface IMandalCreateRequest extends Request {
