@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, MouseEvent } from 'react';
 import { LoginModal } from '../../component/TopNavbar';
 import {
   Logo,
@@ -10,6 +10,9 @@ import {
   StyledLink,
 } from './Styles';
 class TopNavBar extends Component {
+  public handleLogin = (username: string, passworod: string) => {
+    console.log(username, passworod);
+  };
   public render() {
     return (
       <NavBarWrapper>
@@ -23,7 +26,7 @@ class TopNavBar extends Component {
             <MenuText>목록</MenuText>
             <MenuIcon icon="list" />
           </StyledLink>
-          <LoginModal>
+          <LoginModal handlaSubmit={this.handleLogin}>
             <StyledButton>
               <MenuText>로그인 </MenuText>
               <MenuIcon icon="key" />

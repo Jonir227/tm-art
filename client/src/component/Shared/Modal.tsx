@@ -1,7 +1,12 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { ButtonHTMLAttributes, Component, ReactElement } from 'react';
+import React, {
+  ButtonHTMLAttributes,
+  Component,
+  MouseEvent,
+  ReactElement,
+} from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import { GreenColor } from '../../constants/colors';
 import { media } from '../../utils/media';
 
 const ModalBackground = styled.div`
@@ -12,9 +17,13 @@ const ModalBackground = styled.div`
   height: 100%;
   z-index: 100;
   display: flex;
-  justify-content: center;
-  padding-top: 10%;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
   background-color: rgba(0, 0, 0, 0.7);
+  ${media.medium`
+    padding-top: 25px;
+  `}
   ${media.small`
     padding: 0px;
   `}
@@ -22,9 +31,10 @@ const ModalBackground = styled.div`
 
 const ModalWrapper = styled.div`
   width: 560px;
-  height: 80%;
+  max-height: 80%;
   background-color: white;
-  padding: 6px;
+  border-radius: 5px;
+  padding: 12px;
   ${media.small`
     width: 100vw;
     height: 100vh;
@@ -32,17 +42,21 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalHeader = styled.div`
-  height: 20px;
+  height: 40px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
 `;
 
-const ModalCloseBtn = styled.button``;
-
-const ModalCloseIcon = styled(FontAwesomeIcon)`
-  size: 16px;
-  height: 90%;
+const ModalCloseBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  font-family: 'Indie Flower';
+  font-size: 32px;
+  font-weight: 200;
+  &:active {
+    color: ${GreenColor.dark};
+  }
 `;
 
 interface IModalState {
@@ -59,37 +73,37 @@ const withModal = <P extends object>(TargetComponent: React.ComponentType<P>) =>
       isVisible: false,
     };
 
-    public toggleModal = () => {
-      this.setState(
-        prevState => ({
-          ...prevState,
-          isVisible: !prevState.isVisible,
-        }),
-        () => {
-          document.body.style.overflow = this.state.isVisible
-            ? 'hidden'
-            : 'auto';
-        },
-      );
+    public toggleModal = (isVisible: boolean) => {
+      document.body.style.overflow = isVisible ? 'hidden' : 'auto';
+      this.setState(prevState => ({
+        ...prevState,
+        isVisible,
+      }));
     };
 
-    public onClickChildren = () => {
-      this.toggleModal();
+    public showModal = () => {
+      this.toggleModal(true);
+    };
+
+    public hideModal = () => {
+      this.toggleModal(false);
+    };
+
+    public onClickModalBackground = (e: MouseEvent) => {
+      console.log(e);
     };
 
     public render() {
       const { children } = this.props;
       const RenderTarget = document.getElementById('modal');
       const injectedChildren = React.cloneElement(children, {
-        onClick: this.onClickChildren,
+        onClick: this.showModal,
       });
       const modalRender = this.state.isVisible && (
-        <ModalBackground>
+        <ModalBackground onClick={this.onClickModalBackground}>
           <ModalWrapper>
             <ModalHeader>
-              <ModalCloseBtn onClick={this.toggleModal}>
-                <ModalCloseIcon icon="times" />
-              </ModalCloseBtn>
+              <ModalCloseBtn onClick={this.hideModal}>X</ModalCloseBtn>
             </ModalHeader>
             <TargetComponent {...this.props} />
           </ModalWrapper>
