@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/jsonwebtoken": "^8.3.0",
     "lerna": "^3.4.3",
     "prettier": "^1.15.2",
     "tslint": "^5.11.0",

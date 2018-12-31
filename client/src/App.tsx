@@ -46,7 +46,7 @@ class App extends Component {
           <Container>
             <TopNavBar />
             <Route exact path="/make" component={MandalMaker} />
-            <Route exact path="/:id" component={MandalMaker} />
+            <Route exact path="/mandal/:id" component={MandalMaker} />
             <Route exact path="/" component={MandalList} />
           </Container>
         </ContainerWrapper>
