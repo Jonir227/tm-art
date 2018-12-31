@@ -1,0 +1,9 @@
+// 회원가입 정보 확인
+export const PUT_SIGN_UP = 'PUT_SIGN_UP';
+export const PUT_SIGN_UP_REQUEST = 'PUT_SIGN_UP_REQUEST';
+export const PUT_SIGN_UP_SUCCESS = 'PUT_SIGN_UP_SUCCESS';
+export const PUT_SIGN_UP_FAILURE = 'PUT_SIGN_UP_FAILURE';
+
+// id 중복 확인
+export const GET_CHECK_USERNAME = 'GET_CHECK_USERNAME';
+export const GET_CHECK_USERNAME_SUCCESS = 'GET_CHECK_USERNAME';

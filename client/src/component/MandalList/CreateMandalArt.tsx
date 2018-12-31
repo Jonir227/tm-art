@@ -1,9 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MakeBanner } from '../../assets';
-import { GreenColor } from '../../constants/colors';
+import { BlueColor, GreenColor } from '../../constants/colors';
 import { MANDAL_GRADE } from '../../constants/mandalGrade';
 import { media } from '../../utils/media';
+
+const BannerBackground = styled.div`
+  background-color: ${BlueColor.prime};
+  width: 100vw;
+  height: 462px;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -1;
+`;
 
 const ComponentWrapper = styled.div`
   width: 100%;
@@ -62,20 +72,23 @@ const CreateButton = styled.button`
 
 const CreateMandalArt = () => {
   return (
-    <ComponentWrapper>
-      <BannerImage src={MakeBanner} />
-      <BannerContent>
-        <BannerText>Make Your Own Mandal Garden!</BannerText>
-        <BannerGradeList>
-          <div>{MANDAL_GRADE.NewBie}</div>
-          <div>🌟</div>
-          <div>{MANDAL_GRADE.Novice}</div>
-          <div>🌟</div>
-          <div>{MANDAL_GRADE.Expret}</div>
-        </BannerGradeList>
-        <CreateButton>Create New Garden {MANDAL_GRADE.NewBie}</CreateButton>
-      </BannerContent>
-    </ComponentWrapper>
+    <>
+      <BannerBackground />
+      <ComponentWrapper>
+        <BannerImage src={MakeBanner} />
+        <BannerContent>
+          <BannerText>Make Your Own Mandal Garden!</BannerText>
+          <BannerGradeList>
+            <div>{MANDAL_GRADE.NewBie}</div>
+            <div>🌟</div>
+            <div>{MANDAL_GRADE.Novice}</div>
+            <div>🌟</div>
+            <div>{MANDAL_GRADE.Expret}</div>
+          </BannerGradeList>
+          <CreateButton>Create New Garden {MANDAL_GRADE.NewBie}</CreateButton>
+        </BannerContent>
+      </ComponentWrapper>
+    </>
   );
 };
 

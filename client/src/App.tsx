@@ -6,16 +6,6 @@ import TopNavBar from './container/TopNavBar';
 import { MandalList, MandalMaker } from './pages';
 import { media } from './utils/media';
 
-const BannerBackground = styled.div`
-  background-color: ${BlueColor.prime};
-  width: 100%;
-  height: 462px;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  z-index: -1;
-`;
-
 const ContainerWrapper = styled.div`
   display: flex;
   flex-direction: row;
@@ -40,17 +30,14 @@ const Container = styled.div`
 class App extends Component {
   public render() {
     return (
-      <>
-        <BannerBackground />
-        <ContainerWrapper>
-          <Container>
-            <TopNavBar />
-            <Route exact path="/make" component={MandalMaker} />
-            <Route exact path="/mandal/:id" component={MandalMaker} />
-            <Route exact path="/" component={MandalList} />
-          </Container>
-        </ContainerWrapper>
-      </>
+      <ContainerWrapper>
+        <Container>
+          <TopNavBar />
+          <Route exact path="/make" component={MandalMaker} />
+          <Route exact path="/mandal/:id" component={MandalMaker} />
+          <Route exact path="/" component={MandalList} />
+        </Container>
+      </ContainerWrapper>
     );
   }
 }

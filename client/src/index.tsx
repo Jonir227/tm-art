@@ -1,5 +1,3 @@
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faList } from '@fortawesome/free-solid-svg-icons';
 import 'normalize.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -7,11 +5,9 @@ import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import App from './App';
+import './FontAwesome';
 import configureStore from './redux/configureStore';
 import * as serviceWorker from './serviceWorker';
-
-// fontAwesome 초기화
-library.add(faList);
 
 const store = configureStore();
 

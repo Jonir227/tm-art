@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { NavLink } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { BlueColor, GreenColor } from '../../constants/colors';
 import { media } from '../../utils/media';
 
@@ -26,7 +26,7 @@ export const Logo = styled.h1`
   height: 100%;
   ${media.small`
     font-size: 16px;
-    max-width: 100px;
+    max-width: 90px;
   `}
 `;
 
@@ -43,7 +43,7 @@ export const MenuIcon = styled(FontAwesomeIcon)`
   `}
 `;
 
-export const StyledLink = styled(NavLink)`
+const ButtonStyle = css`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,6 +54,9 @@ export const StyledLink = styled(NavLink)`
   text-decoration: none;
   font-size: 20px;
   color: ${GreenColor.prime};
+  ${media.small`
+    width: 40px;
+  `}
   &:hover {
     color: ${BlueColor.prime};
     background-color: ${GreenColor.light};
@@ -66,6 +69,16 @@ export const StyledLink = styled(NavLink)`
     color: ${BlueColor.prime};
     background-color: ${GreenColor.light};
   }
+`;
+
+export const StyledLink = styled(NavLink)`
+  ${ButtonStyle}
+`;
+
+export const StyledButton = styled.button`
+  ${ButtonStyle}
+  border: none;
+  background-color: transparent;
 `;
 
 export const NavigationWrapper = styled.nav`

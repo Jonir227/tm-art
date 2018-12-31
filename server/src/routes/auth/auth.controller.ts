@@ -1,11 +1,40 @@
 import crypto from 'crypto';
 import { Request, Response } from 'express';
 import { checkPassword } from '../../../../shared/util/auth';
-import User from '../../entities/User';
+import { User } from '../../entities';
 import { encodeJWT } from '../../utils/jwtParser';
 
 const key = Buffer.from('5ebe2294ecd0e0f08eab7690d2a6ee69', 'hex');
 const iv = Buffer.from('26ae5cc854e36b6bdfca366848dea6bb', 'hex');
+
+interface IGetCheckValidNameReq extends Request {
+  params: {
+    username: string;
+  };
+}
+
+export const getCheckValidName = async (
+  req: IGetCheckValidNameReq,
+  res: Response,
+) => {
+  const { username } = req.params;
+  try {
+    const user = await User.findOne({ username });
+    if (!user) {
+      res.json({
+        validName: true,
+      });
+      return;
+    }
+    res.json({
+      validName: false,
+    });
+  } catch (err) {
+    res.status(503).json({
+      message: `Cannot Use Db: ${err}`,
+    });
+  }
+};
 
 interface IPutCreateUserReq extends Request {
   body: {
@@ -51,7 +80,14 @@ export const putCreateUser = async (req: IPutCreateUserReq, res: Response) => {
   });
 };
 
-export const putLoginUser = async (req: Request, res: Response) => {
+interface IPostLoginUserReq extends Request {
+  body: {
+    username: string;
+    password: string;
+  };
+}
+
+export const postLoginUser = async (req: IPostLoginUserReq, res: Response) => {
   const { username, password } = req.body;
 
   try {

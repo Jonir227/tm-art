@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ThemeConsumer } from 'styled-components';
 import { CreateMandalArt, MandalListMap } from '../component/MandalList';
+import MandalListHeader from '../component/MandalList/MandalListHeader';
 import mandalArtListActionCreators from '../redux/actions/MandalListAcitons';
 import { IRootState } from '../redux/reducers';
 import { AsyncActionCondition } from '../types/condition';
 import { IMandalArtFront } from '../types/MandalArt';
-import MandalListHeader from '../component/MandalList/MandalListHeader';
 
 interface IMandalListProps {
   readonly count: number;

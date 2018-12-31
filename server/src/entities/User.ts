@@ -2,11 +2,13 @@ import {
   BaseEntity,
   Column,
   CreateDateColumn,
+  Entity,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import MandalArt from './MandalArt';
 
+@Entity()
 class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id!: number;
