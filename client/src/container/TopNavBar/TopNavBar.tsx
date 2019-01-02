@@ -1,5 +1,5 @@
 import React, { Component, MouseEvent } from 'react';
-import { LoginModal } from '../../component/TopNavbar';
+import { SignInModal } from '../Modals';
 import {
   Logo,
   MenuIcon,
@@ -10,9 +10,6 @@ import {
   StyledLink,
 } from './Styles';
 class TopNavBar extends Component {
-  public handleLogin = (username: string, passworod: string) => {
-    console.log(username, passworod);
-  };
   public render() {
     return (
       <NavBarWrapper>
@@ -26,12 +23,12 @@ class TopNavBar extends Component {
             <MenuText>목록</MenuText>
             <MenuIcon icon="list" />
           </StyledLink>
-          <LoginModal handlaSubmit={this.handleLogin}>
+          <SignInModal>
             <StyledButton>
               <MenuText>로그인 </MenuText>
               <MenuIcon icon="key" />
             </StyledButton>
-          </LoginModal>
+          </SignInModal>
         </NavigationWrapper>
       </NavBarWrapper>
     );

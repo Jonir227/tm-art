@@ -1,48 +1,20 @@
 import React, { ChangeEvent, Component, MouseEvent } from 'react';
-import styled from 'styled-components';
-import { GreenColor } from '../../constants/colors';
-import withModal from '../Shared/Modal';
-import TextInput from '../Shared/TextInput';
-
-const Wrapper = styled.form`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-`;
-
-const ModalHeader = styled.h3`
-  color: ${GreenColor.dark};
-  font-family: 'Indie Flower';
-  font-size: 35px;
-  font-weight: 400;
-  text-align: center;
-`;
-
-const InputWrapper = styled.div`
-  height: 100px;
-  margin: 12px;
-  display: flex;
-  flex-direction: column;
-`;
-
-const Label = styled.label`
-  color: ${GreenColor.dark};
-  font-family: 'Indie Flower';
-  font-size: 20px;
-  margin-bottom: 8px;
-`;
-
-const RegisterField = styled(TextInput)`
-  width: 90%;
-`;
-
-const SubmitButton = styled.button`
-  margin-right: 10px;
-  float: right;
-`;
+import { connect } from 'react-redux';
+import { SignUpModal } from '.';
+import { withModal } from '../../component/Shared';
+import {
+  BottomWrapper,
+  InputWrapper,
+  Label,
+  ModalHeader,
+  RegisterField,
+  SignUpButton,
+  SubmitButton,
+  Wrapper,
+} from './Styles';
 
 interface ILoginModalProps {
-  handlaSubmit: (username: string, password: string) => void;
+  handleLogin: (username: string, password: string) => void;
 }
 
 interface ILoginModalState {
@@ -69,7 +41,7 @@ class LoginModal extends Component<ILoginModalProps, ILoginModalState> {
   public handleSubmit = (e: MouseEvent) => {
     e.preventDefault();
     const { username, password } = this.state;
-    this.props.handlaSubmit(username, password);
+    this.props.handleLogin(username, password);
   };
 
   public render() {
@@ -99,14 +71,24 @@ class LoginModal extends Component<ILoginModalProps, ILoginModalState> {
             required
           />
         </InputWrapper>
-        <div>
+        <BottomWrapper>
+          <SignUpModal>
+            <SignUpButton type="button">Sign Up</SignUpButton>
+          </SignUpModal>
           <SubmitButton type="submit" onClick={this.handleSubmit}>
             Submit
           </SubmitButton>
-        </div>
+        </BottomWrapper>
       </Wrapper>
     );
   }
 }
 
-export default withModal(LoginModal);
+export default connect(
+  null,
+  {
+    handleLogin: (username: string, password: string) => {
+      console.log('hi ');
+    },
+  },
+)(withModal(LoginModal));

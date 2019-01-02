@@ -13,7 +13,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "lib": ["esnext", "dom", "es2015.promise"]
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "lib": ["DOM", "ScriptHost", "DOM.Iterable", "ES2015", "ES5"]
   },
-  "include": ["client", "server", "shared"]
+  "include": ["src", "shared"]
 }

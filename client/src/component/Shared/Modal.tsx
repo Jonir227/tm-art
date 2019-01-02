@@ -30,14 +30,14 @@ const ModalBackground = styled.div`
 `;
 
 const ModalWrapper = styled.div`
-  width: 560px;
+  width: 500px;
   max-height: 80%;
   background-color: white;
   border-radius: 5px;
   padding: 12px;
   ${media.small`
     width: 100vw;
-    height: 100vh;
+    max-height: 100vh;
   `}
 `;
 
@@ -90,7 +90,9 @@ const withModal = <P extends object>(TargetComponent: React.ComponentType<P>) =>
     };
 
     public onClickModalBackground = (e: MouseEvent) => {
-      console.log(e);
+      if (e.target === e.currentTarget) {
+        this.toggleModal(false);
+      }
     };
 
     public render() {

@@ -1,5 +1,3 @@
-
-
 const fs = require('fs');
 const path = require('path');
 const resolve = require('resolve');
@@ -214,7 +212,7 @@ module.exports = {
           // The preset includes JSX, Flow, and some ESnext features.
           {
             test: /\.(js|mjs|jsx|ts|tsx)$/,
-            include: paths.appSrc,
+            include: [paths.appSrc, paths.sharedSrc],
             loader: require.resolve('babel-loader'),
             options: {
               // customize: require.resolve(

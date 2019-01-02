@@ -8,7 +8,7 @@ export const getCheckUser = async (
   username: string,
 ): Promise<IGetCheckUserAPIRes> => {
   try {
-    const { data } = await axios.get('/auth/new', { params: { username } });
+    const { data } = await axios.get(`/auth/new/${username}`);
     return data;
   } catch (err) {
     throw Error(err);

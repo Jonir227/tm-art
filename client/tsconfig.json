@@ -17,5 +17,5 @@
     "emitDecoratorMetadata": true,
     "lib": ["DOM", "ScriptHost", "DOM.Iterable", "ES2015", "ES5"]
   },
-  "include": ["src", "shared"]
+  "include": ["src", "../shared"]
 }
