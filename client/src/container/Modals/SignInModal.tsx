@@ -1,13 +1,11 @@
 import React, { ChangeEvent, Component, MouseEvent } from 'react';
 import { connect } from 'react-redux';
 import { SignUpModal } from '.';
+import { UserEntity } from '../../component/Modal';
 import { withModal } from '../../component/Shared';
 import {
   BottomWrapper,
-  InputWrapper,
-  Label,
   ModalHeader,
-  RegisterField,
   SignUpButton,
   SubmitButton,
   Wrapper,
@@ -49,28 +47,24 @@ class LoginModal extends Component<ILoginModalProps, ILoginModalState> {
     return (
       <Wrapper>
         <ModalHeader>Sign In</ModalHeader>
-        <InputWrapper>
-          <Label>E-mail</Label>
-          <RegisterField
-            id="username"
-            type="text"
-            onChange={this.onChangeInput}
-            placeholder="email을 입력해주세요"
-            value={username}
-            required
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <Label>Password</Label>
-          <RegisterField
-            id="password"
-            type="password"
-            onChange={this.onChangeInput}
-            placeholder="password를 입력해주세요"
-            value={password}
-            required
-          />
-        </InputWrapper>
+        <UserEntity
+          id="username"
+          labelName="E-mail"
+          type="email"
+          onChangeInput={this.onChangeInput}
+          placeholder="eamil을 입력해주세요"
+          value={username}
+          required
+        />
+        <UserEntity
+          id="password"
+          labelName="Password"
+          type="password"
+          onChangeInput={this.onChangeInput}
+          placeholder="password를 입력해주세요"
+          value={password}
+          required
+        />
         <BottomWrapper>
           <SignUpModal>
             <SignUpButton type="button">Sign Up</SignUpButton>

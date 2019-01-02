@@ -16,24 +16,6 @@ export const ModalHeader = styled.h3`
   text-align: center;
 `;
 
-export const InputWrapper = styled.div`
-  height: 100px;
-  margin: 12px;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const Label = styled.label`
-  color: ${GreenColor.dark};
-  font-family: 'Indie Flower';
-  font-size: 20px;
-  margin-bottom: 8px;
-`;
-
-export const RegisterField = styled(TextInput)`
-  width: 90%;
-`;
-
 export const BottomWrapper = styled.div`
   font-family: 'Indie Flower';
   font-size: 25px;

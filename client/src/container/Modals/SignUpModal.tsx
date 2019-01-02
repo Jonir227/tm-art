@@ -3,16 +3,9 @@ import React, { ChangeEvent, Component, MouseEvent } from 'react';
 import { connect } from 'react-redux';
 import { checkPassword } from '../../../../shared/util/auth';
 import { getCheckUser } from '../../api/Auth';
+import { UserEntity } from '../../component/Modal';
 import { withModal } from '../../component/Shared';
-import {
-  BottomWrapper,
-  InputWrapper,
-  Label,
-  ModalHeader,
-  RegisterField,
-  SubmitButton,
-  Wrapper,
-} from './Styles';
+import { BottomWrapper, ModalHeader, SubmitButton, Wrapper } from './Styles';
 
 interface ISignUpModalProps {
   handleSubmit: (username: string, password: string, nickName: string) => void;
@@ -43,11 +36,10 @@ class SignUpModal extends Component<ISignUpModalProps, ISingUpModalState> {
 
   public checkValidation = debounce(async (attrKey: string, value: string) => {
     let valid: boolean = false;
-    console.log(attrKey);
     switch (attrKey) {
       case 'username': {
-        const { validName } = await getCheckUser(value);
-        valid = validName && value.length > 0;
+        const data = value.length > 0 && (await getCheckUser(value)).validName;
+        valid = data;
         break;
       }
       case 'password': {
@@ -108,46 +100,37 @@ class SignUpModal extends Component<ISignUpModalProps, ISingUpModalState> {
 
     return (
       <Wrapper>
-        <ModalHeader>Sign In</ModalHeader>
-        <InputWrapper>
-          <Label>E-mail</Label>
-          <RegisterField
-            id="username"
-            type="email"
-            onChange={this.onChangeInput}
-            placeholder="email을 입력해주세요"
-            value={username}
-            required
-          />
-          {username.length > 0 &&
-            (isUsernameValid ? (
-              <div>이름이 돼요~</div>
-            ) : (
-              <div>이름이 안돼요~</div>
-            ))}
-        </InputWrapper>
-        <InputWrapper>
-          <Label>Password</Label>
-          <RegisterField
-            id="password"
-            type="password"
-            onChange={this.onChangeInput}
-            placeholder="password를 입력해주세요"
-            value={password}
-            required
-          />
-        </InputWrapper>
-        <InputWrapper>
-          <Label>NickName</Label>
-          <RegisterField
-            id="nickName"
-            type="input"
-            onChange={this.onChangeInput}
-            placeholder="닉네임을 입력해 주세요"
-            value={nickName}
-            required
-          />
-        </InputWrapper>
+        <ModalHeader>Sign Up</ModalHeader>
+        <UserEntity
+          id="username"
+          labelName="E-mail"
+          type="email"
+          onChangeInput={this.onChangeInput}
+          placeholder="eamil을 입력해주세요"
+          value={username}
+          required
+          isValid={isUsernameValid}
+          validText="가능~"
+          inValidText="불가능~"
+        />
+        <UserEntity
+          id="password"
+          labelName="Password"
+          type="password"
+          onChangeInput={this.onChangeInput}
+          placeholder="password를 입력해주세요"
+          value={password}
+          required
+        />
+        <UserEntity
+          id="nickName"
+          type="input"
+          labelName="NickName"
+          onChangeInput={this.onChangeInput}
+          placeholder="닉네임을 입력해 주세요"
+          value={nickName}
+          required
+        />
         <BottomWrapper>
           <SubmitButton type="submit" onClick={this.handleSubmit}>
             Submit
