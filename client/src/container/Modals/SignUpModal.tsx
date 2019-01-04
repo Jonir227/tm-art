@@ -94,7 +94,7 @@ class SignUpModal extends Component<ISignUpModalProps, ISingUpModalState> {
   public render() {
     const {
       username: { value: username, valid: isUsernameValid },
-      password: { value: password },
+      password: { value: password, valid: isPasswordValid },
       nickName: { value: nickName },
     } = this.state.userInfo;
 
@@ -110,8 +110,8 @@ class SignUpModal extends Component<ISignUpModalProps, ISingUpModalState> {
           value={username}
           required
           isValid={isUsernameValid}
-          validText="가능~"
-          inValidText="불가능~"
+          validText="사용가능한 이메일 입니다."
+          inValidText="중복된 이메일이거나 이메일의 형태가 아닙니다."
         />
         <UserEntity
           id="password"
@@ -121,6 +121,9 @@ class SignUpModal extends Component<ISignUpModalProps, ISingUpModalState> {
           placeholder="password를 입력해주세요"
           value={password}
           required
+          isValid={isPasswordValid}
+          validText="사용가능한 비밀번호 입니다"
+          inValidText="비밀번호는 8자 이상이며 영문 대, 소문자와 숫자, 특수문자를 1개 이상 포함해야 합니다."
         />
         <UserEntity
           id="nickName"

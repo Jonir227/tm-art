@@ -4,6 +4,11 @@ export const PUT_SIGN_UP_REQUEST = 'PUT_SIGN_UP_REQUEST';
 export const PUT_SIGN_UP_SUCCESS = 'PUT_SIGN_UP_SUCCESS';
 export const PUT_SIGN_UP_FAILURE = 'PUT_SIGN_UP_FAILURE';
 
-// id 중복 확인
-export const GET_CHECK_USERNAME = 'GET_CHECK_USERNAME';
-export const GET_CHECK_USERNAME_SUCCESS = 'GET_CHECK_USERNAME';
+// 사용자 로그인
+
+export const SIGN_IN = 'SIGN_IN';
+export const SIGN_IN_REQUEST = 'SIGN_IN_REQUEST';
+export const SIGN_IN_SUCCESS = 'SIGN_IN_SUCCESS';
+export const SIGN_IN_FAILURE = 'SIGN_IN_FAILURE';
+
+export const SIGN_OUT = 'SIGN_OUT';

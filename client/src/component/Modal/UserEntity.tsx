@@ -21,6 +21,19 @@ const RegisterField = styled(TextInput)`
   width: 90%;
 `;
 
+const InfoText = styled.div`
+  font-size: 12px;
+  padding-top: 5px;
+`;
+
+const ValidText = styled(InfoText)`
+  color: green;
+`;
+
+const InValidText = styled(InfoText)`
+  color: red;
+`;
+
 interface IUserEntityProps {
   onChangeInput: (e: ChangeEvent<HTMLInputElement>) => void;
   value: string;
@@ -58,7 +71,7 @@ const UserEntity = ({
         required={required}
       />
       {value.length > 0 &&
-        (isValid ? <div>{validText}</div> : <div>{inValidText}</div>)}
+        (isValid ? <ValidText>{validText}</ValidText> : <InValidText>{inValidText}</InValidText>)}
     </InputWrapper>
   );
 };

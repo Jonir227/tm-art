@@ -47,6 +47,8 @@ interface IPutCreateUserReq extends Request {
 export const putCreateUser = async (req: IPutCreateUserReq, res: Response) => {
   const { nickName, username, password } = req.body;
 
+  // TODO: 유저 중복 체크
+
   if (checkPassword(password)) {
     res.status(403).json({
       message: 'Invalid Password',

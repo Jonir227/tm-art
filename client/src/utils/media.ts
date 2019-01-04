@@ -1,6 +1,6 @@
 import {
   css,
-  InterpolationValue,
+  FlattenSimpleInterpolation,
   SimpleInterpolation,
 } from 'styled-components';
 
@@ -20,7 +20,7 @@ const screenSize: IScreenSize = {
 type MediaQueryFunction = (
   first: TemplateStringsArray,
   ...interpolations: SimpleInterpolation[]
-) => InterpolationValue[];
+) => FlattenSimpleInterpolation;
 
 interface IMediaQuery {
   large: MediaQueryFunction;
