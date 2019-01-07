@@ -2,7 +2,7 @@ import { SagaIterator } from 'redux-saga';
 import { call, put } from 'redux-saga/effects';
 import IAPIAction from '../../types/APIAction';
 
-export default function* apiSagaTemplate(
+export default function* apiSagaTemplate<T>(
   actionCreators: IAPIAction,
   apifn: (...args: any) => Promise<any>,
   payload: any | undefined,

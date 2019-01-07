@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import styled from 'styled-components';
-import { BlueColor } from './constants/colors';
 import TopNavBar from './container/TopNavBar';
 import { MandalList, MandalMaker } from './pages';
+import { IRootState } from './redux/reducers';
 import { media } from './utils/media';
+import { isFatalError } from './utils/selector';
 
 const ContainerWrapper = styled.div`
   display: flex;
@@ -27,19 +29,37 @@ const Container = styled.div`
 
 // http://paletton.com/#uid=12A0u0klepbbtCmgQtGoZlktMgp
 
-class App extends Component {
+interface IAppProps {
+  fatalError: boolean;
+}
+
+class App extends Component<IAppProps> {
   public render() {
     return (
       <ContainerWrapper>
         <Container>
           <TopNavBar />
-          <Route exact path="/make" component={MandalMaker} />
-          <Route exact path="/mandal/:id" component={MandalMaker} />
-          <Route exact path="/" component={MandalList} />
+          {this.renderAppContent()}
         </Container>
       </ContainerWrapper>
     );
   }
+
+  public renderAppContent = () => {
+    const { fatalError } = this.props;
+    if (fatalError) {
+      return <div>에러!</div>;
+    }
+    return (
+      <>
+        <Route exact path="/make" component={MandalMaker} />
+        <Route exact path="/mandal/:id" component={MandalMaker} />
+        <Route exact path="/" component={MandalList} />
+      </>
+    );
+  };
 }
 
-export default App;
+export default connect((state: IRootState) => ({
+  fatalError: isFatalError(state),
+}))(App);

@@ -2,6 +2,7 @@ import { all, call, fork, put, take, takeEvery } from 'redux-saga/effects';
 import { postSignIn, putSingUp } from '../../api/Auth';
 import Storage from '../../utils/Storage';
 import {
+  IPostSignInActionCreators,
   IPostSignInFailure,
   IPostSignInReqeust,
   IPostSignInSuccess,
@@ -18,14 +19,13 @@ import {
 import apiSagaTemplate from './apiSagaTemplate';
 
 /* sagas */
-
 const putSingUpSaga = apiSagaTemplate.bind(
   null,
   putSignUpActionCreators,
   putSingUp,
 );
 
-function* postLoginSaga({
+function* postSignInSaga({
   username,
   password,
 }: {
@@ -33,28 +33,35 @@ function* postLoginSaga({
   password: string;
 }) {
   try {
-    yield put<IPostSignInReqeust>({ type: SIGN_IN_REQUEST });
+    yield put<IPostSignInReqeust>(IPostSignInActionCreators.request());
     const { token, nickName } = yield call(postSignIn, username, password);
-    yield put<IPostSignInSuccess>({ type: SIGN_IN_SUCCESS, payload: nickName });
+    yield put<IPostSignInSuccess>(
+      IPostSignInActionCreators.success(username, nickName),
+    );
     yield call(Storage.setItem, 'jwt', token);
   } catch (err) {
-    yield put<IPostSignInFailure>({ type: SIGN_IN_FAILURE });
+    yield put<IPostSignInFailure>(IPostSignInActionCreators.failure(err));
   }
+}
+
+/* watcher */
+function* watchPutSignUpSaga() {
+  yield takeEvery(PUT_SIGN_UP, putSingUpSaga);
 }
 
 function* authSaga() {
   while (true) {
     const { payload } = yield take(SIGN_IN);
-    yield fork(postLoginSaga, payload);
-    yield take([SIGN_OUT, SIGN_IN_FAILURE]);
-    yield put({ type: SIGN_OUT });
+    yield fork(postSignInSaga, payload);
+    const { action } = yield take([SIGN_OUT, SIGN_IN_FAILURE]);
+    yield call(Storage.deleteItem, 'jwt');
+    if (action.type === SIGN_OUT) {
+      yield put({ type: SIGN_OUT });
+    }
   }
 }
 
-function* watchPutSignUpSaga() {
-  yield takeEvery(PUT_SIGN_UP, putSingUpSaga);
-}
-
+/* root */
 export default function* rootAuthSaga() {
   yield all([fork(watchPutSignUpSaga), fork(authSaga)]);
 }

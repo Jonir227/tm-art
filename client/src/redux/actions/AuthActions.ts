@@ -86,14 +86,42 @@ export interface IPostSignInReqeust extends Action {
   type: typeof SIGN_IN_REQUEST;
 }
 
+const postSingInRequest = (): IPostSignInReqeust => ({
+  type: SIGN_IN_REQUEST,
+});
+
 export interface IPostSignInSuccess extends Action {
   type: typeof SIGN_IN_SUCCESS;
-  payload: { nickName: string };
+  payload: { nickName: string; username: string };
 }
 
+const postSingInSuccess = ({
+  username,
+  nickName,
+}: {
+  username: string;
+  nickName: string;
+}): IPostSignInSuccess => ({
+  type: SIGN_IN_SUCCESS,
+  payload: { username, nickName },
+});
 export interface IPostSignInFailure extends Action {
   type: typeof SIGN_IN_FAILURE;
 }
+
+const postSingInFailure = (): IPostSignInFailure => ({
+  type: SIGN_IN_FAILURE,
+});
+
+export const IPostSignInActionCreators: IAPIAction<
+  IPostSignInReqeust,
+  IPostSignInSuccess,
+  IPostSignInFailure
+> = {
+  request: postSingInRequest,
+  success: postSingInSuccess,
+  failure: postSingInFailure,
+};
 
 export type AuthActions =
   | IPutSignUpRequest
