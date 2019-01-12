@@ -5,6 +5,7 @@ import { checkPassword } from '../../../../shared/util/auth';
 import { getCheckUser } from '../../api/Auth';
 import { UserEntity } from '../../component/Modal';
 import { withModal } from '../../component/Shared';
+import authActionCreaters from '../../redux/actions/AuthActions';
 import { BottomWrapper, ModalHeader, SubmitButton, Wrapper } from './Styles';
 
 interface ISignUpModalProps {
@@ -147,8 +148,6 @@ class SignUpModal extends Component<ISignUpModalProps, ISingUpModalState> {
 export default connect(
   null,
   {
-    handleSubmit: (username: string, password: string, nickName: string) => {
-      console.log('ii');
-    },
+    handleSubmit: authActionCreaters.putSignUp,
   },
 )(withModal(SignUpModal));

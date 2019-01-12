@@ -14,7 +14,7 @@ createConnection({
   synchronize: true,
   type: 'mariadb',
   username: 'root',
-  password: '123654'
+  // password: '123654'
 })
   .then(conn => {
     server.start({ port: 8080, routes });

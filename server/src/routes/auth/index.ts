@@ -7,8 +7,8 @@ import {
 
 const router = express.Router();
 
-router.put('/new', putCreateUser);
-router.get('/new/:username', getCheckValidName);
-router.post('/login', postLoginUser);
+router.put('/signup', putCreateUser);
+router.get('/singup/:username', getCheckValidName);
+router.post('/signin', postLoginUser);
 
 export default router;

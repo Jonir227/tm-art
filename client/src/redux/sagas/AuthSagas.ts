@@ -9,11 +9,9 @@ import {
   putSignUpActionCreators,
 } from '../actions/AuthActions';
 import {
+  POST_SIGN_IN,
+  POST_SIGN_IN_FAILURE,
   PUT_SIGN_UP,
-  SIGN_IN,
-  SIGN_IN_FAILURE,
-  SIGN_IN_REQUEST,
-  SIGN_IN_SUCCESS,
   SIGN_OUT,
 } from '../actionTypes/AuthActionTypes';
 import apiSagaTemplate from './apiSagaTemplate';
@@ -51,9 +49,9 @@ function* watchPutSignUpSaga() {
 
 function* authSaga() {
   while (true) {
-    const { payload } = yield take(SIGN_IN);
+    const { payload } = yield take(POST_SIGN_IN);
     yield fork(postSignInSaga, payload);
-    const { action } = yield take([SIGN_OUT, SIGN_IN_FAILURE]);
+    const { action } = yield take([SIGN_OUT, POST_SIGN_IN_FAILURE]);
     yield call(Storage.deleteItem, 'jwt');
     if (action.type === SIGN_OUT) {
       yield put({ type: SIGN_OUT });

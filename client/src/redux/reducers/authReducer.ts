@@ -1,12 +1,12 @@
 import { AsyncActionCondition } from '../../types/condition';
 import { AuthActions } from '../actions/AuthActions';
 import {
+  POST_SIGN_IN_FAILURE,
+  POST_SIGN_IN_REQUEST,
+  POST_SIGN_IN_SUCCESS,
   PUT_SIGN_UP_FAILURE,
   PUT_SIGN_UP_REQUEST,
   PUT_SIGN_UP_SUCCESS,
-  SIGN_IN_FAILURE,
-  SIGN_IN_REQUEST,
-  SIGN_IN_SUCCESS,
 } from '../actionTypes/AuthActionTypes';
 
 export interface IAuthState {
@@ -50,13 +50,13 @@ const authReducer = (
         SignUpStatus: 'FAILURE',
       };
     }
-    case SIGN_IN_REQUEST: {
+    case POST_SIGN_IN_REQUEST: {
       return {
         ...state,
         SignInStatus: 'LOADING',
       };
     }
-    case SIGN_IN_SUCCESS: {
+    case POST_SIGN_IN_SUCCESS: {
       return {
         ...state,
         SignInStatus: 'SUCCESS',
@@ -64,7 +64,7 @@ const authReducer = (
         username: action.payload.username,
       };
     }
-    case SIGN_IN_FAILURE: {
+    case POST_SIGN_IN_FAILURE: {
       return {
         ...state,
         SignInStatus: 'FAILURE',

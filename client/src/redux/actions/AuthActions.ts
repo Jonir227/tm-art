@@ -1,29 +1,15 @@
 import { Action } from 'redux';
 import IAPIAction from '../../types/APIAction';
 import {
+  POST_SIGN_IN_FAILURE,
+  POST_SIGN_IN_REQUEST,
+  POST_SIGN_IN_SUCCESS,
   PUT_SIGN_UP,
   PUT_SIGN_UP_FAILURE,
   PUT_SIGN_UP_REQUEST,
   PUT_SIGN_UP_SUCCESS,
-  SIGN_IN_FAILURE,
-  SIGN_IN_REQUEST,
-  SIGN_IN_SUCCESS,
+  SIGN_OUT,
 } from '../actionTypes/AuthActionTypes';
-
-/*
-  =========================================
-                ExposedActions
-  =========================================
-*/
-
-const actionCreatorsForComponent = {
-  putSignUp: (username: string, password: string, nickName: string) => ({
-    type: PUT_SIGN_UP,
-    payload: { username, password, nickName },
-  }),
-};
-
-export default actionCreatorsForComponent;
 
 /*
   =========================================
@@ -78,20 +64,20 @@ export const putSignUpActionCreators: IAPIAction = {
 
 /*
   =========================================
-                putSignUp
+                post Sign In
   =========================================
 */
 
 export interface IPostSignInReqeust extends Action {
-  type: typeof SIGN_IN_REQUEST;
+  type: typeof POST_SIGN_IN_REQUEST;
 }
 
 const postSingInRequest = (): IPostSignInReqeust => ({
-  type: SIGN_IN_REQUEST,
+  type: POST_SIGN_IN_REQUEST,
 });
 
 export interface IPostSignInSuccess extends Action {
-  type: typeof SIGN_IN_SUCCESS;
+  type: typeof POST_SIGN_IN_SUCCESS;
   payload: { nickName: string; username: string };
 }
 
@@ -102,15 +88,15 @@ const postSingInSuccess = ({
   username: string;
   nickName: string;
 }): IPostSignInSuccess => ({
-  type: SIGN_IN_SUCCESS,
+  type: POST_SIGN_IN_SUCCESS,
   payload: { username, nickName },
 });
 export interface IPostSignInFailure extends Action {
-  type: typeof SIGN_IN_FAILURE;
+  type: typeof POST_SIGN_IN_FAILURE;
 }
 
 const postSingInFailure = (): IPostSignInFailure => ({
-  type: SIGN_IN_FAILURE,
+  type: POST_SIGN_IN_FAILURE,
 });
 
 export const IPostSignInActionCreators: IAPIAction<
@@ -130,3 +116,24 @@ export type AuthActions =
   | IPostSignInReqeust
   | IPostSignInSuccess
   | IPostSignInFailure;
+
+/*
+  =========================================
+                ExposedActions
+  =========================================
+*/
+
+const putSignUp = (username: string, password: string, nickName: string) => ({
+  type: PUT_SIGN_UP,
+});
+
+const signOut = () => ({
+  type: SIGN_OUT,
+});
+
+const actionCreatorsForComponent = {
+  putSignUp,
+  signOut,
+};
+
+export default actionCreatorsForComponent;

@@ -7,12 +7,8 @@ interface IGetCheckUserAPI {
 export const getCheckUser = async (
   username: string,
 ): Promise<IGetCheckUserAPI> => {
-  try {
-    const { data } = await axios.get(`/auth/new/${username}`);
-    return data;
-  } catch (err) {
-    throw Error(err);
-  }
+  const { data } = await axios.get(`/auth/signup/${username}`);
+  return data;
 };
 
 interface IPutSignUpAPI {
@@ -26,12 +22,8 @@ export const putSingUp = async (payload: {
   password: string;
   nickName: string;
 }): Promise<IPutSignUpAPI> => {
-  try {
-    const { data } = await axios.put('/auth/new', { ...payload });
-    return data;
-  } catch (err) {
-    throw Error(err);
-  }
+  const { data } = await axios.put('/auth/signup', { ...payload });
+  return data;
 };
 
 interface IPostSignInAPI {
@@ -43,12 +35,8 @@ export const postSignIn = async (
   username: string,
   password: string,
 ): Promise<IPostSignInAPI> => {
-  try {
-    const {
-      data: { token, nickName },
-    } = await axios.post('/auth/login', { username, password });
-    return { token, nickName };
-  } catch (err) {
-    throw Error(err);
-  }
+  const {
+    data: { token, nickName },
+  } = await axios.post('/auth/signin', { username, password });
+  return { token, nickName };
 };
